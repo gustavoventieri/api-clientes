@@ -1,4 +1,4 @@
-# API de Criptografia
+# API de Manipulação de Clientes
 
 <div align="right">
   <sub>Criado em</sub>  
