@@ -1,5 +1,6 @@
 const mongosse = require("mongoose");
 
+// Client Model
 const clientSchema = new mongosse.Schema({
   name: {
     type: String,
@@ -21,11 +22,7 @@ const clientSchema = new mongosse.Schema({
     type: String,
     required: true,
   },
-  date_created: {
-    type: Date,
-    required: true,
-  },
 });
 
-const clientModel = new mongosse.model("Clientes", clientSchema);
+const clientModel = new mongosse.model("Client", clientSchema);
 module.exports = clientModel;

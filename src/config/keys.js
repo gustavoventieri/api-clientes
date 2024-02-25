@@ -1,3 +1,4 @@
+// keys of database
 module.exports = {
   database: {
     host: process.env.DB_HOST,
