@@ -5,11 +5,10 @@ class ClientControllers {
   async selectAll(req, res) {
     try {
       const clientData = await clientModel.find();
-      console.log(clientData);
       if (clientData !== null) {
         res.status(200).json(clientData);
       } else {
-        res.status(500).json("Don´t exist clients informations");
+        res.status(404).json("Don't exist clients informations");
       }
     } catch (error) {
       res.status(500).json(`Error: ${error}`);
@@ -20,11 +19,10 @@ class ClientControllers {
     try {
       const id = req.params.id;
       const clientData = await clientModel.findById(id);
-      console.log(clientData);
       if (clientData !== null) {
         res.status(200).json(clientData);
       } else {
-        res.status(500).json("Don´t exist this client");
+        res.status(404).json("this client doens't exist");
       }
     } catch (error) {
       res.status(500).json(`Error: ${error}`);
@@ -36,6 +34,32 @@ class ClientControllers {
     try {
       const clientData = await clientModel.create(req.body);
       res.status(200).json(clientData);
+    } catch (error) {
+      res.status(500).json(`Error: ${error}`);
+    }
+  }
+
+  // This function updates one client by ID
+  async update(req, res) {
+    try {
+      const id = req.params.id;
+      const clientData = await clientModel.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
+      res.status(200).json(clientData);
+    } catch (error) {
+      res.status(500).json(`Error: ${error}`);
+    }
+  }
+
+  // This function deletes one client by ID
+  async delete(req, res) {
+    try {
+      const id = req.params.id;
+      const clientData = await clientModel.findByIdAndDelete(id);
+      res.status(200).json({
+        resultado: "Exclusão realizada com sucesso",
+      });
     } catch (error) {
       res.status(500).json(`Error: ${error}`);
     }
